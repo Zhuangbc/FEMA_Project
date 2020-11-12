@@ -142,6 +142,16 @@ county_sub1 <- county_sub[a]
 
 kable(head(county_sub1,n=5)) %>%
 kable_styling(font_size=6)
+
+head(left_join(disaster_sub,detail_sub,by = "ID"))
+
+
+detail_sub <- detail_sub %>%
+  mutate(ID = str_c(state,county,sep = ",")) %>%
+        filter(
+               state=="texas",
+               county %in% unique(disaster_sub$county))
+
 ```
 
 ## 3.2 Basic Map
